@@ -1,7 +1,7 @@
-INSERT INTO categories(title, symbol)
+INSERT INTO categories(title_category, symbol)
 VALUES
 ('Доски и лыжи','boards'),
-('Крепления','attachmen'),
+('Крепления','attachment'),
 ('Ботинки','boots'),
 ('Одежда','clothing'),
 ('Инструменты','tools'),
@@ -13,7 +13,7 @@ VALUES
 ('anatolii@gmail.com', 'Anatolii', '1234', '+380987776655', 2, 2),
 ('vlad@gmail.com', 'Vlad', '1234', '+380987776655', 3, 3);
 
-INSERT INTO lots (title, dscr, img_path, start_price, price, step, dt_fin, id_user, id_winner, id_category)
+INSERT INTO lots (title_lot, dscr, img_path, start_price, price_lot, step, dt_fin, id_user, id_winner, id_category)
 VALUES
 ('2014 Rossignol District Snowboard', 'some text 1', 'img/lot-1.jpg', '10999', '11999', 1000 ,'2020-06-11', 1, 3, 1),
 ('DC Ply Mens 2016/2017 Snowboard', 'some text 2', 'img/lot-2.jpg', '15999', '16999', 1000,'2020-06-10', 1, 3, 1),
@@ -22,16 +22,16 @@ VALUES
 ('Куртка для сноуборда DC Mutiny Charocal', 'some text 5', 'img/lot-5.jpg', '7500', '8000', 500, '2020-06-07', 2, 3, 4),
 ('Маска Oakley Canopy', 'some text 6', 'img/lot-6.jpg', '5400', '5900', 500, '2020-06-06', 3, 3, 6);
 
-INSERT INTO bids(price, id_lot, id_user)
+INSERT INTO bids(price_bid, id_lot, id_user)
 VALUES
 (15000, 1, 3),
 (16000, 1, 2),
 (17000, 1, 3),
 (18000, 1, 2);
 
-SELECT title FROM categories;
+SELECT title_category FROM categories;
 
-SELECT title, start_price, img_path, price, id_category, dt_fin FROM lots WHERE
+SELECT title_lot, start_price, img_path, price_lot, id_category, dt_fin FROM lots WHERE
 dt_fin < '2020-06-11 00:00:00';
 
 SELECT *  FROM lots l

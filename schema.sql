@@ -7,18 +7,18 @@ USE yeticave;
 DROP TABLE IF EXISTS categories;
 CREATE TABLE categories (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title CHAR(64) NOT NULL UNIQUE,
+  title_category CHAR(64) NOT NULL UNIQUE,
   symbol CHAR(64) NOT NULL UNIQUE
 );
 DROP TABLE IF EXISTS lots;
 CREATE TABLE lots (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   dt_add TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  title CHAR(80),
+  title_lot CHAR(80),
   dscr TEXT,
   img_path CHAR(255) DEFAULT NULL,
   start_price INT DEFAULT 0,
-  price INT,
+  price_lot INT,
   step INT NOT NULL,
   dt_fin TIMESTAMP NOT NULL,
   id_user INT,
@@ -29,7 +29,7 @@ DROP TABLE IF EXISTS bids;
 CREATE TABLE bids (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   dt_add TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  price INT NOT NULL,
+  price_bid INT NOT NULL,
   id_lot INT,
   id_user INT
 );

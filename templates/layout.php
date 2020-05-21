@@ -51,7 +51,7 @@
         <ul class="nav__list container">
             <?php foreach($categories as $category): ?>
                 <li class="nav__item">
-                    <a href="<?=$category?>.html"><?= str_xss($category); ?></a>
+                    <a href="<?=$category['title_category']?>.html"><?= str_xss($category['title_category']); ?></a>
                 </li>
             <?php endforeach; ?>
         </ul>
