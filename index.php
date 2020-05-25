@@ -7,7 +7,6 @@ if (!$config_sql) {
 } else {
     // защита от sql-иньекций экранированием
     $test = mysqli_real_escape_string($config_sql, $_GET['search']);
-    print $test;
     // запрос на получение категорий
     $sql = 'SELECT `id`, `title_category`, `symbol`
     FROM categories';
