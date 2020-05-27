@@ -37,5 +37,5 @@
             <?php endforeach; ?>
         </ul>
     </section>
-<</main>
+</main>
 
