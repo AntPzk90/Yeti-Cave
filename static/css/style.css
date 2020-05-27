@@ -875,6 +875,10 @@ input:invalid .form__error{
   border-color: #f84646;
 }
 
+.form__item--invalid .form__input-file label{
+  border-color: #f84646;
+}
+
 .form__item--small.form__item--invalid input {
   background: #ffffff url("../img/error.svg") 94% 11px no-repeat;
 }

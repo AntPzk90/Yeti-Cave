@@ -23,7 +23,7 @@ if (!$config_sql) {
 
     $result_items = mysqli_query($config_sql, $sql);
     $lot_item = mysqli_fetch_all($result_items, MYSQLI_ASSOC);
-    $page_content = include_template('inc/lot-item.php', [
+    $page_content = include_template('inc/lot-page.php', [
         'item' => $lot_item[0]
     ]);
 }
