@@ -21,7 +21,7 @@
         </li>
     </ul>
     </nav>
-    <form class="form container <?=$errors['email'] ? 'form--invalid': ''; ?>" action="registration.php" method="post" autocomplete="off">
+    <form class="form container <?=$form_error ? 'form--invalid': ''; ?>" action="registration.php" method="post" autocomplete="off">
     <h2>Регистрация нового аккаунта</h2>
     <div class="form__item <?=$errors['email'] ? 'form__item--invalid': ''; ?>">
         <label for="email">E-mail <sup>*</sup></label>

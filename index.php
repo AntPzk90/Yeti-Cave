@@ -17,9 +17,9 @@ if (!$config_sql) {
     $sql = 'SELECT * FROM lots l
     JOIN categories c
     ON l.id_category = c.id';
+
     $result_items = mysqli_query($config_sql, $sql);
     $items = mysqli_fetch_all($result_items, MYSQLI_ASSOC);
-
     if ($result_categories && $result_items) {
         $page_content = include_template('inc/main.php', [
             'items' => $items,

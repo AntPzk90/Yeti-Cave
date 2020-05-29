@@ -9,9 +9,9 @@ if (!$config_sql) {
         // код для обработки формы
         if(isset($_POST)) {
             $lot = $_POST;
-
+            // объявление переменной про ошибки валидации
             $form_error = false;
-            // проверка валидации
+            // проверка ошибки валидации (каждого поля отдельно)
             $errors = validate_add_lot($lot);
         }
         // перемещение картинки
@@ -29,10 +29,12 @@ if (!$config_sql) {
            }
         }
         if(!check_errors($errors)) {
+            // добавление нового лота в БД
+            $lot_category = get_ctegory_id($lot['category']);
             $sql = 'INSERT INTO lots (title_lot, dscr, img_path, start_price, price_lot, step, dt_fin, id_user, id_winner, id_category)
             VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-            $stmt = db_get_prepare_stmt($config_sql, $sql, [$lot['lot-name'], $lot['message'], $lot['path'], $lot['lot-rate'], $lot['lot-rate'], $lot['lot-step'], $lot['lot-date'], 3, 3, get_ctegory_id($lot['category'])]);
+            $stmt = db_get_prepare_stmt($config_sql, $sql, [$lot['lot-name'], $lot['message'], $lot['path'], $lot['lot-rate'], $lot['lot-rate'], $lot['lot-step'], $lot['lot-date'], 3, 3, $lot_category]);
             $result = mysqli_stmt_execute($stmt);
             if($sql) {
                 //заголовок для перенаправления пользователя

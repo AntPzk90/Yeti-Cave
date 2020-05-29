@@ -39,7 +39,7 @@ CREATE TABLE users (
   email CHAR(64) NOT NULL UNIQUE ,
   date_registration TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   name_user CHAR(64) NOT NULL UNIQUE,
-  pass CHAR(64) NOT NULL,
+  pass CHAR(255) NOT NULL,
   contacts CHAR(64),
   id_lot INT,
   id_bid INT
