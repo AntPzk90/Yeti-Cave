@@ -12,6 +12,7 @@ if (!$config_sql) {
     FROM categories';
     $result_categories = mysqli_query($config_sql, $sql);
     $categories = mysqli_fetch_all($result_categories, MYSQLI_ASSOC);
+
     // запрос на получение лотов
     $sql = 'SELECT * FROM lots l
     JOIN categories c

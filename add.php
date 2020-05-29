@@ -9,6 +9,7 @@ if (!$config_sql) {
         // код для обработки формы
         if(isset($_POST)) {
             $lot = $_POST;
+
             $form_error = false;
             // проверка валидации
             $errors = validate_add_lot($lot);
@@ -33,19 +34,18 @@ if (!$config_sql) {
 
             $stmt = db_get_prepare_stmt($config_sql, $sql, [$lot['lot-name'], $lot['message'], $lot['path'], $lot['lot-rate'], $lot['lot-rate'], $lot['lot-step'], $lot['lot-date'], 3, 3, get_ctegory_id($lot['category'])]);
             $result = mysqli_stmt_execute($stmt);
-            check_errors($errors);
             if($sql) {
                 //заголовок для перенаправления пользователя
                 header("Location: index.php");
             }
         }
+        $form_error = check_errors($errors);
     }
 
     $sql = 'SELECT `id`, `title_category`, `symbol`
     FROM categories';
     $result_categories = mysqli_query($config_sql, $sql);
     $categories = mysqli_fetch_all($result_categories, MYSQLI_ASSOC);
-
 
     $page_content = include_template('inc/add-page.php', [
         'categories' => $categories,
