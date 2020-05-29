@@ -1,12 +1,3 @@
-<?php
-    if ($errors) {
-        foreach ($errors as $error) {
-            if ($error) {
-                $form_error = true;
-            }
-        }
-    }
-?>
 <main>
     <nav class="nav">
         <ul class="nav__list container">

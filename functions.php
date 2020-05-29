@@ -253,3 +253,31 @@ function get_ctegory_id ($category_txt) {
             break;
     }
 }
+/**
+ * вфлидация полей формы регистрации:
+ * - файл
+ * @param $new_user_data данные из полей формы
+ *
+ * @return $errors массив с ошибками
+ */
+function validate_redistration_form ($new_user_data) {
+    $errors = [
+        'email' => false,
+        'password' => false,
+        'name' => false,
+        'message' => false
+    ];
+   if(empty($new_user_data['email']) && !filter_var($new_user_data['email'], FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = true;
+   }
+   if(empty($new_user_data['password'])) {
+       $errors['password'] = true;
+   }
+   if(empty($new_user_data['name'])) {
+       $errors['name'] = true;
+   }
+   if(empty($new_user_data['message'])) {
+       $errors['message'] =  true;
+   }
+   return $errors;
+}
