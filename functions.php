@@ -165,10 +165,10 @@ function check_errors ($errors_arr) {
  * -цена (стартовая)
  * -шаг
  * -дата
- * @param $lot значение из полей формы взятые из $_POST
+ * @param $lot_data значение из полей формы взятые из $_POST
  * @return $errors arr флаги ошибок в полях
  */
-function validate_add_lot ($lot) {
+function validate_add_lot ($lot_data) {
     $errors = [
         'name' => false,
         'category' => false,
@@ -180,28 +180,28 @@ function validate_add_lot ($lot) {
     ];
     $form_error = false;
     // проверка валидации
-    if (empty($lot['lot-name'])) {
+    if (empty($lot_data['lot-name'])) {
         $errors['name'] = true;
     }
-    if ($lot['category'] === 'Выберите категорию') {
+    if ($lot_data['category'] === 'Выберите категорию') {
         $errors['category'] = true;
     }
-    if (empty($lot['message'])) {
+    if (empty($lot_data['message'])) {
         $errors['message'] = true;
     }
-    if (empty($lot['lot-rate'])) {
+    if (empty($lot_data['lot-rate'])) {
         $errors['rate'] = true;
-    } else if ($lot['lot-rate'] < 0 || !intval($lot['lot-rate'])) {
+    } else if ($lot_data['lot-rate'] < 0 || !intval($lot_data['lot-rate'])) {
         $errors['rate'] = true;
     }
-    if (empty($lot['lot-step'])) {
+    if (empty($lot_data['lot-step'])) {
         $errors['step'] = true;
-    } else if ($lot['lot-step'] < 0 || !intval($lot['lot-step'])) {
+    } else if ($lot_data['lot-step'] < 0 || !intval($lot_data['lot-step'])) {
         $errors['step'] = true;
     }
-    if (empty($lot['lot-date'])) {
+    if (empty($lot_data['lot-date'])) {
         $errors['date'] = true;
-    } else if(!check_date($lot['lot-date'])) {
+    } else if(!check_date($lot_data['lot-date'])) {
         $errors['date'] = true;
     }
 
@@ -233,7 +233,7 @@ function validate_add_lot_file ($file_type, $file_size) {
  */
 function get_ctegory_id ($category_txt) {
     switch ($category_txt) {
-        case 'Доски и лыж':
+        case 'Доски и лыжи':
             return 1;
             break;
         case 'Крепления':
@@ -280,4 +280,24 @@ function validate_redistration_form ($new_user_data) {
        $errors['message'] =  true;
    }
    return $errors;
+}
+/**
+ * вфлидация полей формы логина:
+ * - файл
+ * @param $user_data данные из полей формы
+ *
+ * @return $errors массив с ошибками
+ */
+function validate_login_form ($user_data) {
+    $errors = [
+        'email' => false,
+        'password' => false,
+    ];
+    if(empty($user_data['email'])) {
+        $errors['email'] = true;
+    }
+    if(empty($user_data['password'])) {
+        $errors['password'] = true;
+    }
+    return $errors;
 }

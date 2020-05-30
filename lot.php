@@ -1,6 +1,12 @@
 <?php
 require_once('functions.php');
 require_once('config.php');
+// проверка авторизации пользователя
+if(isset($_SESSION['user'])) {
+    $user_auth = $_SESSION['user'];
+} else {
+    $user_auth = null;
+}
 // сделать проверки isset
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -24,7 +30,8 @@ if (!$config_sql) {
     $result_items = mysqli_query($config_sql, $sql);
     $lot_item = mysqli_fetch_all($result_items, MYSQLI_ASSOC);
     $page_content = include_template('inc/lot-page.php', [
-        'item' => $lot_item[0]
+        'item' => $lot_item[0],
+        'user_auth' => $user_auth
     ]);
 }
 
@@ -32,6 +39,7 @@ if (!$config_sql) {
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
     'categories' => $categories,
-    'title' => 'Yeti Cave'
+    'title' => 'Yeti Cave',
+    'user_auth' => $user_auth
 ]);
 print($layout_content);
