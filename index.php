@@ -5,6 +5,12 @@ require_once('config.php');
 if (!$config_sql) {
     $page_content = include_template('inc/404.php', []);
 } else {
+    // проверка авторизации пользователя
+    if(isset($_SESSION['user'])) {
+        $user_auth = $_SESSION['user'];
+    } else {
+        $user_auth = null;
+    }
     // защита от sql-иньекций экранированием
     $test = mysqli_real_escape_string($config_sql, $_GET['search']);
     // запрос на получение категорий
@@ -34,6 +40,7 @@ if (!$config_sql) {
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
     'categories' => $categories,
-    'title' => 'Yeti Cave'
+    'title' => 'Yeti Cave',
+    'user_auth' => $user_auth
 ]);
 print($layout_content);
