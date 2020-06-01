@@ -5,7 +5,7 @@ require_once('config.php');
 if (!$config_sql) {
     $page_content = include_template('inc/404.php', []);
 } else {
-    if(isset($_SESSION['user'])) {
+    if (isset($_SESSION['user'])) {
         $user_auth = $_SESSION['user'];
     } else {
         $user_auth = null;
@@ -22,9 +22,9 @@ if (!$config_sql) {
         // запрос полнотекстового поиска
         $sql = "SELECT * FROM lots l JOIN categories c ON l.id_category = c.id WHERE MATCH(title_lot, dscr) AGAINST(?)";
         $stmt = db_get_prepare_stmt($config_sql, $sql, [$search]);
-		mysqli_stmt_execute($stmt);
-		$result = mysqli_stmt_get_result($stmt);
-		$items = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
     $page_content = include_template('inc/search-page.php', [

@@ -7,14 +7,14 @@ if (!$config_sql) {
 } else {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // код для обработки формы
-        if(isset($_POST)) {
+        if (isset($_POST)) {
             $user = $_POST;
             // объявление переменной про ошибки валидации
             $form_error = false;
             // проверка ошибки валидации (каждого поля отдельно)
             $errors = validate_login_form($user);
             // запрос на получение email
-            $sql = "SELECT `id` FROM `users` WHERE `email`='".$user['email']."'";
+            $sql = "SELECT `id` FROM `users` WHERE `email`='" . $user['email'] . "'";
             $result_email = mysqli_query($config_sql, $sql);
             $user_email_ident = mysqli_fetch_all($result_email, MYSQLI_ASSOC);
             // проверка на наличие такого tmail в базе
@@ -22,13 +22,13 @@ if (!$config_sql) {
                 $errors['email'] = true;
             }
             if ($user_email_ident && !check_errors($errors)) {
-                $sql = "SELECT * FROM `users` WHERE `email`='".$user['email']."'";
+                $sql = "SELECT * FROM `users` WHERE `email`='" . $user['email'] . "'";
                 $result_pass = mysqli_query($config_sql, $sql);
                 $user_from_sql = mysqli_fetch_all($result_pass, MYSQLI_ASSOC);
                 $password_hash = $user_from_sql[0]['pass'];
                 $user_auth = $user_from_sql[0];
-                if($sql) {
-                    if(password_verify($user['password'], $password_hash)) {
+                if ($sql) {
+                    if (password_verify($user['password'], $password_hash)) {
                         $_SESSION['user']['id'] = $user_auth['id'];
                         $_SESSION['user']['name'] = $user_auth['name_user'];
                         $error_password_verify = false;
