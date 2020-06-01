@@ -67,7 +67,7 @@ function get_time ($final_date) {
     $time = [
         'days' => floor($balance_to_funal_date_days),
         'hours' => floor($balance_to_funal_date_hours),
-        'minites' => floor($balance_to_funal_date_minutes)
+        'minutes' => floor($balance_to_funal_date_minutes)
     ];
     return $time;
 }
@@ -267,7 +267,7 @@ function validate_redistration_form ($new_user_data) {
         'name' => false,
         'message' => false
     ];
-   if(empty($new_user_data['email']) && !filter_var($new_user_data['email'], FILTER_VALIDATE_EMAIL)) {
+   if(empty($new_user_data['email']) || !filter_var($new_user_data['email'], FILTER_VALIDATE_EMAIL)) {
     $errors['email'] = true;
    }
    if(empty($new_user_data['password'])) {
